@@ -1,7 +1,25 @@
 import json
+import subprocess
 from aiohttp import web
-
 from yandexfreetranslate import YandexFreeTranslate
+
+
+def install_packages(packages):
+    for package in packages:
+        try:
+            subprocess.check_call(["pip", "install", package])
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to install {package}: {e}")
+
+required_packages = ["aiohttp", "yandexfreetranslate"]
+
+try:
+    pass  # Add your code here
+except ImportError:
+    install_packages(required_packages)
+
+
+
 
 async def handle(request):
     headers = {"Content-Type": "application/json; charset=utf-8"}
